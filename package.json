@@ -1,0 +1,21 @@
+{
+  "name": "xblog",
+  "version": "1.0.0",
+  "description": "A blog for writers",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joseph-muchene/xblog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joseph-muchene/xblog/issues"
+  },
+  "homepage": "https://github.com/joseph-muchene/xblog#readme"
+}
