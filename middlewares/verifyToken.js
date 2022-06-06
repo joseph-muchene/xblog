@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 
- function verifyToken(req, res) {
+ function verifyToken(req, res,next) {
   // check if header contain token
 
-  const authToken = req.header.token;
+  const authToken = req.headers.token;
 
   if (authToken) {
     const splitToken = authToken.split(" ")[1];

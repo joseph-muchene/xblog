@@ -19,6 +19,6 @@ router.route("/register").post(registerUser);
 router.route("/signin").post(SignIn);
 router.route("/update/:userId").put(verifyTokenAndAuthorization, updateUser);
 router.route("/remove/:userId").delete(verifyTokenAndAuthorization, deleteUser);
-router.route("/:userId").get(getUser, verifyTokenAndAuthorization);
+router.route("/:userId").get(verifyTokenAndAuthorization, getUser);
 
 module.exports = router;

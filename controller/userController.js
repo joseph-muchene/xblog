@@ -83,21 +83,32 @@ async function SignIn(req, res) {
 
 @ update user
 */
-async function updateUser(req,res) {
+async function updateUser(req, res) {
+  try {
+    const { id } = req.user.user;
 
-  const { id } = req.user.user;
-  await User.findByIdAndUpdate(
-    { _id: id },
-    { $set: req.body },
-    { new: true },
-    (err, data) => {
-      if (err) {
-        return res.status(400).json("could not update");
-      } else {
-        return res.status(201).json("user updated", { user: data });
+    let newCopy = { ...req.body };
+
+    const { password } = newCopy;
+
+    const salt = await bcrypt.genSaltSync(10);
+    const hash = await bcrypt.hashSync(password, salt);
+    newCopy.password = hash;
+    await User.findByIdAndUpdate(
+      { _id: id },
+      { $set: newCopy },
+      { new: true },
+      (err, data) => {
+        if (err || !data) {
+          return res.json(400, { msg: "could not update" });
+        } else {
+          return res.json(200, { msg: "user updated", user: data });
+        }
       }
-    }
-  );
+    );
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 /*
